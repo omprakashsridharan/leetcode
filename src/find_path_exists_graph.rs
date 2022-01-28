@@ -1,7 +1,7 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 pub fn valid_path(n: i32, edges: Vec<Vec<i32>>, source: i32, destination: i32) -> bool {
-    let mut visited = vec![false; n as usize];
+    let mut visited: HashSet<i32> = HashSet::with_capacity(n as usize);
     let mut map: HashMap<i32, Vec<i32>> = HashMap::new();
     let mut dfs = Vec::new();
     for e in edges {
@@ -12,12 +12,12 @@ pub fn valid_path(n: i32, edges: Vec<Vec<i32>>, source: i32, destination: i32) -
     }
     dfs.push(source);
     while let Some(cn) = dfs.pop() {
-        visited[cn as usize] = true;
         if cn == destination {
             return true;
         }
+        visited.insert(cn);
         for v in map.get(&cn).unwrap().to_vec() {
-            if !visited[v as usize] {
+            if !visited.contains(&v) {
                 dfs.push(v);
             }
         }
