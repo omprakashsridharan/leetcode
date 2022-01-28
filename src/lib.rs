@@ -1,5 +1,6 @@
 mod design_hash_map;
 mod find_path_exists_graph;
+mod heap;
 mod k_th_largest;
 mod longest_palindromic_substring;
 mod merge_k_sorted_lists;
